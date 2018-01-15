@@ -39,6 +39,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         consolePanel1 = new panels.ConsolePanel();
         gamePanel1 = new panels.GamePanel();
+        gameOverPanel1 = new panels.GameOverPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -57,6 +58,7 @@ public class GameFrame extends javax.swing.JFrame {
         );
 
         getContentPane().add(gamePanel1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(gameOverPanel1, java.awt.BorderLayout.PAGE_START);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -64,6 +66,7 @@ public class GameFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private panels.ConsolePanel consolePanel1;
+    private panels.GameOverPanel gameOverPanel1;
     private panels.GamePanel gamePanel1;
     // End of variables declaration//GEN-END:variables
 
@@ -72,9 +75,12 @@ public class GameFrame extends javax.swing.JFrame {
         this.setTitle(title);
         this.setLocationRelativeTo(this);
         
+        gameOverPanel1.setVisible(false);
+        
         this.setVisible(true);
         this.controller = controller;
         controller.setGamePanel(gamePanel1);
         controller.setConsolePanel(consolePanel1);
+        controller.setGameOverPanel(gameOverPanel1);
     }
 }

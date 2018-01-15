@@ -19,8 +19,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -186,7 +184,7 @@ public class InfoPanel extends javax.swing.JPanel {
 
     private void btnOkMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkMouseReleased
         btnOk.setIcon(menuButtonImage);
-        ((JFrame) SwingUtilities.getWindowAncestor(this)).dispose();
+        controller.exitInfoFrame();
     }//GEN-LAST:event_btnOkMouseReleased
 
     private void setting() {

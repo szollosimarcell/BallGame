@@ -152,6 +152,10 @@ public class Ball extends Thread {
         Ball.speedLimit = speedLimit;
     }
 
+    public void setAktiv(boolean aktiv) {
+        this.aktiv = aktiv;
+    }
+
     public Image getImg() {
         return img;
     }

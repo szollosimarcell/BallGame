@@ -24,6 +24,7 @@ public class Global {
     public static String GAME_IMAGE_BLUE = "/kepek/game_background_blue.png";
     public static String GAME_IMAGE_RED = "/kepek/game_background_red.png";
     public static String CONSOLE_PANEL_IMAGE = "/kepek/console_panel_image.png";
+    public static String GAME_OVER_IMAGE = "/kepek/game_over_image.png";
 
     //ResultFrame properties
     public static int RESULT_FRAME_WIDTH = 600;

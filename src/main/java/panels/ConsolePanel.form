@@ -29,19 +29,21 @@
               <Component id="jLabel2" min="-2" pref="76" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblPoint" min="-2" pref="43" max="-2" attributes="0"/>
-              <EmptySpace pref="692" max="32767" attributes="0"/>
+              <EmptySpace pref="716" max="32767" attributes="0"/>
               <Component id="jLabel1" min="-2" pref="55" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblTime" min="-2" pref="90" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="lblTime" min="-2" pref="45" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jLabel1" alignment="0" pref="50" max="32767" attributes="0"/>
           <Component id="jLabel2" alignment="1" max="32767" attributes="0"/>
-          <Component id="lblTime" alignment="0" max="32767" attributes="0"/>
+          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+              <Component id="lblTime" alignment="3" pref="50" max="32767" attributes="0"/>
+              <Component id="jLabel1" alignment="3" pref="50" max="32767" attributes="0"/>
+          </Group>
           <Component id="lblPoint" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
@@ -79,6 +81,7 @@
           <Color blue="66" green="66" red="0" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblPoint">

@@ -35,12 +35,14 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         menuPanel1 = new panels.MenuPanel();
+        resultPanel1 = new panels.ResultPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);
         setResizable(false);
         getContentPane().add(menuPanel1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(resultPanel1, java.awt.BorderLayout.PAGE_START);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -83,6 +85,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private panels.MenuPanel menuPanel1;
+    private panels.ResultPanel resultPanel1;
     // End of variables declaration//GEN-END:variables
 
     private void setting() {
@@ -94,8 +97,9 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void start() {
         this.setVisible(true);
-        Controller controller = new Controller(menuPanel1);
+        Controller controller = new Controller(menuPanel1, resultPanel1);
         menuPanel1.setController(controller);
+        resultPanel1.setController(controller);
         controller.start();
     }
 }

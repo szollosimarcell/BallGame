@@ -12,6 +12,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 
 /**
@@ -80,11 +81,11 @@ public class GamePanel extends javax.swing.JPanel {
 
     private void setting() {
         Toolkit toolKit = Toolkit.getDefaultToolkit();
-        Image cursorImage = new ImageIcon(this.getClass().getResource("/kepek/cursor_image_red.png")).getImage();
+        BufferedImage blankImage = new BufferedImage(32, 32, BufferedImage.TYPE_INT_ARGB);
         Point pont = new Point(0, 0);
-        Cursor cursor = toolKit.createCustomCursor(cursorImage, pont, "Cursor");
+        Cursor blankCursor = toolKit.createCustomCursor(blankImage, pont, "blankCursor");
 
-        this.setCursor(cursor);
+        this.setCursor(blankCursor);
     }
 
     public void imageChange() {

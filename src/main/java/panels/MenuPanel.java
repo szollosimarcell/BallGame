@@ -6,18 +6,12 @@
 package panels;
 
 import control.Controller;
-import control.MainFrame;
 import global.Global;
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -30,7 +24,7 @@ import javax.swing.SwingUtilities;
 public class MenuPanel extends javax.swing.JPanel {
 
     Controller controller;
-    BufferedImage wallpaperImg;
+    Image wallpaperImg = new ImageIcon(this.getClass().getResource(Global.MENU_IMAGE)).getImage();
     int xMouse;
     int yMouse;
 
@@ -78,7 +72,7 @@ public class MenuPanel extends javax.swing.JPanel {
         txtName = new javax.swing.JTextField();
         btnResults = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
-        btnPaddle = new javax.swing.JButton();
+        btnMinimize = new javax.swing.JButton();
         btnInfo = new javax.swing.JButton();
 
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -162,18 +156,18 @@ public class MenuPanel extends javax.swing.JPanel {
         });
         add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, 30, 30));
 
-        btnPaddle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kepek/minimize_button.png"))); // NOI18N
-        btnPaddle.setBorderPainted(false);
-        btnPaddle.setContentAreaFilled(false);
-        btnPaddle.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnMinimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kepek/minimize_button.png"))); // NOI18N
+        btnMinimize.setBorderPainted(false);
+        btnMinimize.setContentAreaFilled(false);
+        btnMinimize.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnPaddleMousePressed(evt);
+                btnMinimizeMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnPaddleMouseReleased(evt);
+                btnMinimizeMouseReleased(evt);
             }
         });
-        add(btnPaddle, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, 30, 30));
+        add(btnMinimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, 30, 30));
 
         btnInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kepek/info_button.png"))); // NOI18N
         btnInfo.setBorderPainted(false);
@@ -203,20 +197,17 @@ public class MenuPanel extends javax.swing.JPanel {
 
     private void btnExitMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseReleased
         btnExit.setIcon(exitButtonImage);
-        int selectedOption = JOptionPane.showConfirmDialog(null, "Biztos ki akarsz lépni?", "Válassz", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (selectedOption == JOptionPane.YES_OPTION) {
-            System.exit(0);
-        }
+        controller.exitGame();
     }//GEN-LAST:event_btnExitMouseReleased
 
-    private void btnPaddleMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPaddleMousePressed
-        btnPaddle.setIcon(minimizeButtonPressedImage);
-    }//GEN-LAST:event_btnPaddleMousePressed
+    private void btnMinimizeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizeMousePressed
+        btnMinimize.setIcon(minimizeButtonPressedImage);
+    }//GEN-LAST:event_btnMinimizeMousePressed
 
-    private void btnPaddleMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPaddleMouseReleased
-        btnPaddle.setIcon(minimizeButtonImage);
-        ((JFrame) SwingUtilities.getWindowAncestor(this)).setState(MainFrame.ICONIFIED);
-    }//GEN-LAST:event_btnPaddleMouseReleased
+    private void btnMinimizeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizeMouseReleased
+        btnMinimize.setIcon(minimizeButtonImage);
+        controller.iconify();
+    }//GEN-LAST:event_btnMinimizeMouseReleased
 
     private void btnInfoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInfoMousePressed
         btnInfo.setIcon(infoButtonPressedImage);
@@ -269,15 +260,10 @@ public class MenuPanel extends javax.swing.JPanel {
 
     private void btnResultsMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResultsMouseReleased
         btnResults.setIcon(menuButtonImage);
+        controller.resultShow();
     }//GEN-LAST:event_btnResultsMouseReleased
 
     private void setting() {
-        try {
-            wallpaperImg = ImageIO.read(this.getClass().getResourceAsStream(Global.MENU_IMAGE));
-        } catch (IOException ex) {
-            Logger.getLogger(MenuPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
         Toolkit toolKit = Toolkit.getDefaultToolkit();
         Image cursorImage = new ImageIcon(this.getClass().getResource("/kepek/cursor_image_blue.png")).getImage();
         Point pont = new Point(0, 0);
@@ -290,7 +276,7 @@ public class MenuPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnInfo;
-    private javax.swing.JButton btnPaddle;
+    private javax.swing.JButton btnMinimize;
     private javax.swing.JButton btnResults;
     private javax.swing.JButton btnStart;
     private javax.swing.JTextField txtName;
