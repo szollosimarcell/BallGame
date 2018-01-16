@@ -19,7 +19,7 @@ import javax.swing.ImageIcon;
  * @author Marci
  */
 public class GameOverPanel extends javax.swing.JPanel {
-    
+
     Controller controller;
     private final Image wallpaperImg = new ImageIcon(this.getClass().getResource(Global.GAME_OVER_IMAGE)).getImage();
     private final ImageIcon buttonImage = new ImageIcon(this.getClass().getResource("/kepek/game_over_button.png"));
@@ -46,8 +46,6 @@ public class GameOverPanel extends javax.swing.JPanel {
     public void setController(Controller controller) {
         this.controller = controller;
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -189,6 +187,7 @@ public class GameOverPanel extends javax.swing.JPanel {
 
     private void btnNewGameMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewGameMouseEntered
         btnNewGame.setIcon(buttonImageLight);
+        controller.buttonEnteredEffect();
     }//GEN-LAST:event_btnNewGameMouseEntered
 
     private void btnNewGameMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewGameMouseExited
@@ -197,6 +196,7 @@ public class GameOverPanel extends javax.swing.JPanel {
 
     private void btnNewGameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewGameMousePressed
         btnNewGame.setIcon(buttonImageDark);
+        controller.buttonPressedEffect();
     }//GEN-LAST:event_btnNewGameMousePressed
 
     private void btnNewGameMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewGameMouseReleased
@@ -206,6 +206,7 @@ public class GameOverPanel extends javax.swing.JPanel {
 
     private void btnBackToMenuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackToMenuMouseEntered
         btnBackToMenu.setIcon(buttonImageLight);
+        controller.buttonEnteredEffect();
     }//GEN-LAST:event_btnBackToMenuMouseEntered
 
     private void btnBackToMenuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackToMenuMouseExited
@@ -214,6 +215,7 @@ public class GameOverPanel extends javax.swing.JPanel {
 
     private void btnBackToMenuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackToMenuMousePressed
         btnBackToMenu.setIcon(buttonImageDark);
+        controller.buttonPressedEffect();
     }//GEN-LAST:event_btnBackToMenuMousePressed
 
     private void btnBackToMenuMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackToMenuMouseReleased
@@ -223,6 +225,7 @@ public class GameOverPanel extends javax.swing.JPanel {
 
     private void btnExitGameMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitGameMouseEntered
         btnExitGame.setIcon(buttonImageLight);
+        controller.buttonEnteredEffect();
     }//GEN-LAST:event_btnExitGameMouseEntered
 
     private void btnExitGameMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitGameMouseExited
@@ -231,6 +234,7 @@ public class GameOverPanel extends javax.swing.JPanel {
 
     private void btnExitGameMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitGameMousePressed
         btnExitGame.setIcon(buttonImageDark);
+        controller.buttonPressedEffect();
     }//GEN-LAST:event_btnExitGameMousePressed
 
     private void btnExitGameMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitGameMouseReleased

@@ -62,4 +62,11 @@ public class Global {
     public static int PADDLE_Y = 700;
     public static String PADDLE_IMAGE_BLUE = "/kepek/blue_paddle.gif";
     public static String PADDLE_IMAGE_RED = "/kepek/red_paddle.gif";
+
+    //Media
+    public static String MAIN_MUSIC_PATH = "/music/mainMusic.mp3";
+    public static String GAME_OVER_EFFECT = "/music/gameOver.mp3";
+    public static String BUTTON_PRESSED_EFFECT = "/music/buttonPressed.mp3";
+    public static String BUTTON_ENTERED_EFFECT = "/music/buttonEntered.mp3";
+    public static String BALL_COLLISION_EFFECT = "/music/ballCollision.mp3";
 }

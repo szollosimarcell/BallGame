@@ -37,6 +37,8 @@ public class MenuPanel extends javax.swing.JPanel {
     ImageIcon menuButtonImage = new ImageIcon(this.getClass().getResource("/kepek/menu_button.png"));
     ImageIcon menuButtonLightImage = new ImageIcon(this.getClass().getResource("/kepek/menu_button_light.png"));
     ImageIcon menuButtonDarkImage = new ImageIcon(this.getClass().getResource("/kepek/menu_button_dark.png"));
+    ImageIcon musicButtonOn = new ImageIcon(this.getClass().getResource("/kepek/music_on_button.png"));
+    ImageIcon musicButtonOff = new ImageIcon(this.getClass().getResource("/kepek/music_off_button.png"));
 
     /**
      * Creates new form MenuPanel
@@ -74,6 +76,7 @@ public class MenuPanel extends javax.swing.JPanel {
         btnExit = new javax.swing.JButton();
         btnMinimize = new javax.swing.JButton();
         btnInfo = new javax.swing.JButton();
+        btnMusic = new javax.swing.JButton();
 
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -172,6 +175,7 @@ public class MenuPanel extends javax.swing.JPanel {
         btnInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kepek/info_button.png"))); // NOI18N
         btnInfo.setBorderPainted(false);
         btnInfo.setContentAreaFilled(false);
+        btnInfo.setDisabledIcon(new javax.swing.ImageIcon(getClass().getResource("/kepek/info_button.png"))); // NOI18N
         btnInfo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btnInfoMousePressed(evt);
@@ -181,6 +185,16 @@ public class MenuPanel extends javax.swing.JPanel {
             }
         });
         add(btnInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, 30, 30));
+
+        btnMusic.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kepek/music_on_button.png"))); // NOI18N
+        btnMusic.setBorderPainted(false);
+        btnMusic.setContentAreaFilled(false);
+        btnMusic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMusicActionPerformed(evt);
+            }
+        });
+        add(btnMusic, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, 30, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
@@ -210,12 +224,16 @@ public class MenuPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnMinimizeMouseReleased
 
     private void btnInfoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInfoMousePressed
-        btnInfo.setIcon(infoButtonPressedImage);
+        if (btnInfo.isEnabled() == true) {
+            btnInfo.setIcon(infoButtonPressedImage);
+        }
     }//GEN-LAST:event_btnInfoMousePressed
 
     private void btnInfoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInfoMouseReleased
-        btnInfo.setIcon(infoButtonImage);
-        controller.infoStart();
+        if (btnInfo.isEnabled() == true) {
+            btnInfo.setIcon(infoButtonImage);
+            controller.infoStart();
+        }
     }//GEN-LAST:event_btnInfoMouseReleased
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
@@ -232,6 +250,7 @@ public class MenuPanel extends javax.swing.JPanel {
 
     private void btnStartMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStartMouseEntered
         btnStart.setIcon(menuButtonLightImage);
+        controller.buttonEnteredEffect();
     }//GEN-LAST:event_btnStartMouseEntered
 
     private void btnStartMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStartMouseExited
@@ -240,6 +259,7 @@ public class MenuPanel extends javax.swing.JPanel {
 
     private void btnStartMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStartMousePressed
         btnStart.setIcon(menuButtonDarkImage);
+        controller.buttonPressedEffect();
     }//GEN-LAST:event_btnStartMousePressed
 
     private void btnStartMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStartMouseReleased
@@ -248,6 +268,7 @@ public class MenuPanel extends javax.swing.JPanel {
 
     private void btnResultsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResultsMouseEntered
         btnResults.setIcon(menuButtonLightImage);
+        controller.buttonEnteredEffect();
     }//GEN-LAST:event_btnResultsMouseEntered
 
     private void btnResultsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResultsMouseExited
@@ -256,14 +277,27 @@ public class MenuPanel extends javax.swing.JPanel {
 
     private void btnResultsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResultsMousePressed
         btnResults.setIcon(menuButtonDarkImage);
+        controller.buttonPressedEffect();
     }//GEN-LAST:event_btnResultsMousePressed
 
     private void btnResultsMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResultsMouseReleased
         btnResults.setIcon(menuButtonImage);
-        controller.resultShow();
+        controller.showResult();
     }//GEN-LAST:event_btnResultsMouseReleased
 
+    private void btnMusicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMusicActionPerformed
+        if (btnMusic.getIcon().hashCode() == musicButtonOn.hashCode()) {
+            btnMusic.setIcon(musicButtonOff);
+            controller.musicOff();
+        } else {
+            btnMusic.setIcon(musicButtonOn);
+            controller.mainMusicStart();
+        }
+    }//GEN-LAST:event_btnMusicActionPerformed
+
     private void setting() {
+        btnMusic.setIcon(musicButtonOn);
+        
         Toolkit toolKit = Toolkit.getDefaultToolkit();
         Image cursorImage = new ImageIcon(this.getClass().getResource("/kepek/cursor_image_blue.png")).getImage();
         Point pont = new Point(0, 0);
@@ -277,8 +311,17 @@ public class MenuPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnInfo;
     private javax.swing.JButton btnMinimize;
+    private javax.swing.JButton btnMusic;
     private javax.swing.JButton btnResults;
     private javax.swing.JButton btnStart;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
+
+    public void infoButtonDisable() {
+        btnInfo.setEnabled(false);
+    }
+
+    public void infoButtonEnable() {
+        btnInfo.setEnabled(true);
+    }
 }

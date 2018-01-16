@@ -18,12 +18,13 @@ public class Player {
     public Player(String nev) {
         this.name = nev;
     }
-
-    /**
-     * A játékos pontot kap
-     */
+   
     public void earnPoint() {
         points++;
+    }
+    
+    public void cleanPoint() {
+        points = 0;
     }
 
     public void setTime(int time) {

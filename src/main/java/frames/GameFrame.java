@@ -7,13 +7,16 @@ package frames;
 
 import control.Controller;
 import global.Global;
+import panels.ConsolePanel;
+import panels.GameOverPanel;
+import panels.GamePanel;
 
 /**
  *
  * @author Marci
  */
 public class GameFrame extends javax.swing.JFrame {
-    
+
     private final int width = Global.GAME_FRAME_WIDTH;
     private final int height = Global.GAME_FRAME_HEIGHT;
     private final String title = Global.GAME_FRAME_TITLE;
@@ -21,6 +24,7 @@ public class GameFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form GameFrame
+     *
      * @param controller
      */
     public GameFrame(Controller controller) {
@@ -74,13 +78,41 @@ public class GameFrame extends javax.swing.JFrame {
         this.setSize(width, height);
         this.setTitle(title);
         this.setLocationRelativeTo(this);
-        
+
         gameOverPanel1.setVisible(false);
-        
+
         this.setVisible(true);
         this.controller = controller;
         controller.setGamePanel(gamePanel1);
         controller.setConsolePanel(consolePanel1);
         controller.setGameOverPanel(gameOverPanel1);
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public Controller getController() {
+        return controller;
+    }
+
+    public ConsolePanel getConsolePanel1() {
+        return consolePanel1;
+    }
+
+    public GameOverPanel getGameOverPanel1() {
+        return gameOverPanel1;
+    }
+
+    public GamePanel getGamePanel1() {
+        return gamePanel1;
     }
 }

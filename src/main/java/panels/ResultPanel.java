@@ -121,7 +121,7 @@ public class ResultPanel extends javax.swing.JPanel {
 
     private void btnBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseReleased
         btnBack.setIcon(backButtonPressedImage);
-        controller.mainMenuShow();
+        controller.showMainMenu();
     }//GEN-LAST:event_btnBackMouseReleased
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged

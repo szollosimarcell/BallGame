@@ -6,6 +6,8 @@
 package control;
 
 import global.Global;
+import panels.MenuPanel;
+import panels.ResultPanel;
 
 /**
  *
@@ -97,9 +99,29 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void start() {
         this.setVisible(true);
-        Controller controller = new Controller(menuPanel1, resultPanel1);
+        Controller controller = new Controller(menuPanel1, resultPanel1, this);
         menuPanel1.setController(controller);
         resultPanel1.setController(controller);
         controller.start();
+    }
+
+    public int getSzelesseg() {
+        return szelesseg;
+    }
+
+    public int getMagassag() {
+        return magassag;
+    }
+
+    public String getCim() {
+        return cim;
+    }
+
+    public MenuPanel getMenuPanel1() {
+        return menuPanel1;
+    }
+
+    public ResultPanel getResultPanel1() {
+        return resultPanel1;
     }
 }

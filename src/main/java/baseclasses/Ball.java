@@ -35,6 +35,17 @@ public class Ball extends Thread {
     private boolean aktiv = true;
     private boolean falling = false;
 
+    /**
+     * The contructor of the Ball object with one image.
+     *
+     * @param img  the image of the ball
+     * @param x  x coordinate of the ball image
+     * @param y  y coordinate of the ball image
+     * @param dx  horizontal movement speed of the ball
+     * @param dy  vertical movement speed of the ball
+     * @param time  sleeping time of tha ball
+     * @param controller
+     */
     public Ball(Image img, int x, int y, int dx, int dy, long time, Controller controller) {
         this.controller = controller;
         this.img = img;
@@ -45,6 +56,17 @@ public class Ball extends Thread {
         this.time = time;
     }
 
+    /**
+     * The contructor of the Ball object with a pair of two images.
+     *
+     * @param imagePair  the pair of the two images of the ball
+     * @param x  x coordinate of the ball image
+     * @param y  y coordinate of the ball image
+     * @param dx  horizontal movement speed of the ball
+     * @param dy  vertical movement speed of the ball
+     * @param time  sleeping time of tha ball
+     * @param controller
+     */
     public Ball(BallImagePair imagePair, int x, int y, int dx, int dy, long time, Controller controller) {
         this.imagePair = imagePair;
         this.x = x;
@@ -86,6 +108,10 @@ public class Ball extends Thread {
         }
     }
 
+    /**
+     * This method is the balls movement description.
+     * When the ball hits the wall it changes its direction
+     */
     private void move() {
         x += dx;
         y += dy;
@@ -99,18 +125,29 @@ public class Ball extends Thread {
         }
     }
 
+    /**
+     * This method changes the balls direction vertically if
+     * it collided with the paddle and if it is not in
+     * the falling state.
+     */
     private void collide() {
         if (controller.collisionCheck(x, y) && falling == false) {
             dy = -dy;
         }
     }
 
+    /**
+     * This method decides whether the ball is falling or not
+     */
     private void fall() {
         if (controller.ballFell(y)) {
             falling = true;
         }
     }
 
+    /**
+     * The ball gets a new position when it has fallen.
+     */
     private void respawn() {
         if (panelHeight < y + height / 2) {
             y = height / 2;
@@ -119,7 +156,10 @@ public class Ball extends Thread {
             controller.mistakeOccurred();
         }
     }
-
+    
+    /**
+     * The thread's sleeping time
+     */
     private void rest() {
         try {
             Thread.sleep(time);

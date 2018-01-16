@@ -7,13 +7,14 @@ package frames;
 
 import control.Controller;
 import global.Global;
+import panels.InfoPanel;
 
 /**
  *
  * @author Marci
  */
 public class InfoFrame extends javax.swing.JFrame {
-    
+
     private final int width = Global.INFO_FRAME_WIDTH;
     private final int height = Global.INFO_FRAME_HEIGHT;
     private final String title = Global.INFO_FRAME_TITLE;
@@ -50,14 +51,32 @@ public class InfoFrame extends javax.swing.JFrame {
         this.setSize(width, height);
         this.setTitle(title);
         this.setLocationRelativeTo(this);
-        
+
         this.setVisible(true);
         this.controller = controller;
         controller.setInfoPanel(infoPanel1);
     }
 
-    
-    
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public Controller getController() {
+        return controller;
+    }
+
+    public InfoPanel getInfoPanel1() {
+        return infoPanel1;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private panels.InfoPanel infoPanel1;
     // End of variables declaration//GEN-END:variables
