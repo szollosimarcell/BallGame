@@ -14,6 +14,7 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -58,22 +59,22 @@ public class ConsolePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblTimeString = new javax.swing.JLabel();
+        lblPointString = new javax.swing.JLabel();
         lblTime = new javax.swing.JLabel();
         lblPoint = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(153, 153, 153));
         setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Idő:");
+        lblTimeString.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblTimeString.setForeground(new java.awt.Color(204, 204, 204));
+        lblTimeString.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTimeString.setText("Idő:");
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel2.setText("Pontszám:");
+        lblPointString.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblPointString.setForeground(new java.awt.Color(204, 204, 204));
+        lblPointString.setText("Pontszám:");
 
         lblTime.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lblTime.setForeground(new java.awt.Color(0, 102, 102));
@@ -91,31 +92,31 @@ public class ConsolePanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblPointString, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblPoint, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 716, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTimeString, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTime, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblPointString, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(lblTime, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
+                .addComponent(lblTimeString, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
             .addComponent(lblPoint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblPoint;
+    private javax.swing.JLabel lblPointString;
     private javax.swing.JLabel lblTime;
+    private javax.swing.JLabel lblTimeString;
     // End of variables declaration//GEN-END:variables
 
     private void setting() {
@@ -139,5 +140,10 @@ public class ConsolePanel extends javax.swing.JPanel {
 
     public void pointWrite(long point) {
         lblPoint.setText(point + "");
+    }
+
+    public void languageSetting(ResourceBundle bundle) {
+        lblPointString.setText(bundle.getString("lblPoint.text"));
+        lblTimeString.setText(bundle.getString("lblTime.text"));
     }
 }

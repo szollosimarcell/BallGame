@@ -12,6 +12,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 
@@ -76,10 +77,12 @@ public class GamePanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
-        controller.movePaddle(evt.getX());
+        controller.movePaddleMouse(evt.getX());
     }//GEN-LAST:event_formMouseMoved
 
     private void setting() {
+        this.setFocusable(true);
+
         Toolkit toolKit = Toolkit.getDefaultToolkit();
         BufferedImage blankImage = new BufferedImage(32, 32, BufferedImage.TYPE_INT_ARGB);
         Point pont = new Point(0, 0);

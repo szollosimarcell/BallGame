@@ -15,6 +15,7 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -65,14 +66,15 @@ public class InfoPanel extends javax.swing.JPanel {
 
         btnOk = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        lblGameGoal = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblPaddleDescription = new javax.swing.JLabel();
+        lblHaveFun = new javax.swing.JLabel();
+        lblBallDescription = new javax.swing.JLabel();
 
         setForeground(new java.awt.Color(204, 204, 204));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnOk.setFont(new java.awt.Font("Eras Medium ITC", 1, 18)); // NOI18N
         btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kepek/menu_button.png"))); // NOI18N
@@ -94,84 +96,53 @@ public class InfoPanel extends javax.swing.JPanel {
                 btnOkMouseReleased(evt);
             }
         });
+        add(btnOk, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 139, 37));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Eras Medium ITC", 0, 18)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(204, 204, 204));
-        jTextArea1.setRows(5);
-        jTextArea1.setText("A játék célja, hogy minél tovább bírd, és minél\ntöbb pontot szerezz. A feladat, hogy visszaüsd\n a labdát. Minden labdaütésért egy pont jár.\nHa háromszor leesik, a játéknak vége.");
-        jTextArea1.setBorder(null);
-        jTextArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTextArea1.setDisabledTextColor(new java.awt.Color(204, 204, 204));
-        jTextArea1.setEnabled(false);
-        jTextArea1.setOpaque(false);
-        jScrollPane1.setViewportView(jTextArea1);
+        lblGameGoal.setEditable(false);
+        lblGameGoal.setColumns(20);
+        lblGameGoal.setFont(new java.awt.Font("Eras Medium ITC", 1, 18)); // NOI18N
+        lblGameGoal.setForeground(new java.awt.Color(204, 204, 204));
+        lblGameGoal.setLineWrap(true);
+        lblGameGoal.setRows(5);
+        lblGameGoal.setText("A játék célja, hogy minél tovább bírd, és minél több pontot szerezz. A feladat, hogy visszaüsd a labdát. Minden labdaütésért egy pont jár. Ha háromszor leesik, a játéknak vége.");
+        lblGameGoal.setWrapStyleWord(true);
+        lblGameGoal.setAutoscrolls(false);
+        lblGameGoal.setBorder(null);
+        lblGameGoal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblGameGoal.setDisabledTextColor(new java.awt.Color(204, 204, 204));
+        lblGameGoal.setEnabled(false);
+        lblGameGoal.setOpaque(false);
+        jScrollPane1.setViewportView(lblGameGoal);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 390, 118));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kepek/ball_blue.png"))); // NOI18N
-
-        jLabel2.setFont(new java.awt.Font("Eras Medium ITC", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel2.setText("A labda, amit vissza kell ütni.");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kepek/blue_paddle_image.png"))); // NOI18N
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, 29));
 
-        jLabel3.setFont(new java.awt.Font("Eras Medium ITC", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel3.setText("A tálca, amivel ütsz.");
+        lblPaddleDescription.setFont(new java.awt.Font("Eras Medium ITC", 1, 16)); // NOI18N
+        lblPaddleDescription.setForeground(new java.awt.Color(204, 204, 204));
+        lblPaddleDescription.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPaddleDescription.setText("A tálca, amivel ütsz.");
+        add(lblPaddleDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 400, 29));
 
-        jLabel5.setFont(new java.awt.Font("Eras Medium ITC", 0, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel5.setText("Jó szórakozást!");
+        lblHaveFun.setFont(new java.awt.Font("Eras Medium ITC", 1, 24)); // NOI18N
+        lblHaveFun.setForeground(new java.awt.Color(204, 204, 204));
+        lblHaveFun.setText("Jó szórakozást!");
+        add(lblHaveFun, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 186, 37));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                        .addGap(10, 10, 10))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(25, 25, 25))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
+        lblBallDescription.setFont(new java.awt.Font("Eras Medium ITC", 1, 16)); // NOI18N
+        lblBallDescription.setForeground(new java.awt.Color(204, 204, 204));
+        lblBallDescription.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBallDescription.setText("A labda, amit vissza kell ütni");
+        add(lblBallDescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 400, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkMouseEntered
         btnOk.setIcon(menuButtonLightImage);
+        controller.buttonEnteredEffect();
     }//GEN-LAST:event_btnOkMouseEntered
 
     private void btnOkMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkMouseExited
@@ -180,6 +151,7 @@ public class InfoPanel extends javax.swing.JPanel {
 
     private void btnOkMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkMousePressed
         btnOk.setIcon(menuButtonDarkImage);
+        controller.buttonPressedEffect();
     }//GEN-LAST:event_btnOkMousePressed
 
     private void btnOkMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkMouseReleased
@@ -199,8 +171,8 @@ public class InfoPanel extends javax.swing.JPanel {
         jScrollPane1.setBorder(null);
         jScrollPane1.setViewportBorder(null);
 
-        jTextArea1.setBorder(null);
-        jTextArea1.setBackground(new Color(0, 0, 0, 0));
+        lblGameGoal.setBorder(null);
+        lblGameGoal.setBackground(new Color(0, 0, 0, 0));
 
         Toolkit toolKit = Toolkit.getDefaultToolkit();
         Image cursorImage = new ImageIcon(this.getClass().getResource("/kepek/cursor_image_blue.png")).getImage();
@@ -214,11 +186,19 @@ public class InfoPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOk;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel lblBallDescription;
+    private javax.swing.JTextArea lblGameGoal;
+    private javax.swing.JLabel lblHaveFun;
+    private javax.swing.JLabel lblPaddleDescription;
     // End of variables declaration//GEN-END:variables
+
+    public void languageSetting(ResourceBundle bundle) {
+        btnOk.setText(bundle.getString("btnOk.text"));
+        lblGameGoal.setText(bundle.getString("lblGameGoal.text"));
+        lblBallDescription.setText(bundle.getString("lblBallDescription.text"));
+        lblPaddleDescription.setText(bundle.getString("lblPaddleDescription.text"));
+        lblHaveFun.setText(bundle.getString("lblHaveFun.text"));
+    }
 }

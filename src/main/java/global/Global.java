@@ -20,6 +20,8 @@ public class Global {
     //GameFrame properties
     public static int GAME_FRAME_WIDTH = 1000;
     public static int GAME_FRAME_HEIGHT = 800;
+    public static int FIELD_SIDE_STRIPE_X = 5;
+    public static int FIELD_UPPER_STRIPE_Y = 20;
     public static String GAME_FRAME_TITLE = "Game";
     public static String GAME_IMAGE_BLUE = "/kepek/game_background_blue.png";
     public static String GAME_IMAGE_RED = "/kepek/game_background_red.png";
@@ -63,10 +65,14 @@ public class Global {
     public static String PADDLE_IMAGE_BLUE = "/kepek/blue_paddle.gif";
     public static String PADDLE_IMAGE_RED = "/kepek/red_paddle.gif";
 
-    //Media
+    //Media properties
     public static String MAIN_MUSIC_PATH = "/music/mainMusic.mp3";
     public static String GAME_OVER_EFFECT = "/music/gameOver.mp3";
     public static String BUTTON_PRESSED_EFFECT = "/music/buttonPressed.mp3";
     public static String BUTTON_ENTERED_EFFECT = "/music/buttonEntered.mp3";
     public static String BALL_COLLISION_EFFECT = "/music/ballCollision.mp3";
+    
+   //Bundle properties
+    public static String BUNDLE_PATH_HU = "locality/Bundle_hu_HU";
+    public static String BUNDLE_PATH_EN = "locality/Bundle_en_GB";
 }

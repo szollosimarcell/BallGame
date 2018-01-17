@@ -12,6 +12,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.util.ResourceBundle;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -39,6 +40,8 @@ public class MenuPanel extends javax.swing.JPanel {
     ImageIcon menuButtonDarkImage = new ImageIcon(this.getClass().getResource("/kepek/menu_button_dark.png"));
     ImageIcon musicButtonOn = new ImageIcon(this.getClass().getResource("/kepek/music_on_button.png"));
     ImageIcon musicButtonOff = new ImageIcon(this.getClass().getResource("/kepek/music_off_button.png"));
+    ImageIcon languageButtonEn = new ImageIcon(this.getClass().getResource("/kepek/language_en.png"));
+    ImageIcon languageButtonHu = new ImageIcon(this.getClass().getResource("/kepek/language_hu.png"));
 
     /**
      * Creates new form MenuPanel
@@ -77,6 +80,7 @@ public class MenuPanel extends javax.swing.JPanel {
         btnMinimize = new javax.swing.JButton();
         btnInfo = new javax.swing.JButton();
         btnMusic = new javax.swing.JButton();
+        btnLanguage = new javax.swing.JButton();
 
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -194,12 +198,22 @@ public class MenuPanel extends javax.swing.JPanel {
                 btnMusicActionPerformed(evt);
             }
         });
-        add(btnMusic, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, 30, 30));
+        add(btnMusic, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 470, 30, 30));
+
+        btnLanguage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kepek/language_hu.png"))); // NOI18N
+        btnLanguage.setBorderPainted(false);
+        btnLanguage.setContentAreaFilled(false);
+        btnLanguage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLanguageActionPerformed(evt);
+            }
+        });
+        add(btnLanguage, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, 30, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
         if (txtName.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Nem írtál be nevet!");
+            controller.blankNameDialog();
         } else {
             controller.gameStart(txtName.getText());
         }
@@ -211,7 +225,7 @@ public class MenuPanel extends javax.swing.JPanel {
 
     private void btnExitMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseReleased
         btnExit.setIcon(exitButtonImage);
-        controller.exitGame();
+        controller.exitDialog();
     }//GEN-LAST:event_btnExitMouseReleased
 
     private void btnMinimizeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizeMousePressed
@@ -286,7 +300,7 @@ public class MenuPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnResultsMouseReleased
 
     private void btnMusicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMusicActionPerformed
-        if (btnMusic.getIcon().hashCode() == musicButtonOn.hashCode()) {
+        if (btnMusic.getIcon().equals(musicButtonOn)) {
             btnMusic.setIcon(musicButtonOff);
             controller.musicOff();
         } else {
@@ -295,9 +309,20 @@ public class MenuPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnMusicActionPerformed
 
+    private void btnLanguageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLanguageActionPerformed
+        if (btnLanguage.getIcon().equals(languageButtonHu)) {
+            btnLanguage.setIcon(languageButtonEn);
+            controller.bundleSetting("en");
+        } else {
+            btnLanguage.setIcon(languageButtonHu);
+            controller.bundleSetting("hu");
+        }
+    }//GEN-LAST:event_btnLanguageActionPerformed
+
     private void setting() {
         btnMusic.setIcon(musicButtonOn);
-        
+        btnLanguage.setIcon(languageButtonHu);
+
         Toolkit toolKit = Toolkit.getDefaultToolkit();
         Image cursorImage = new ImageIcon(this.getClass().getResource("/kepek/cursor_image_blue.png")).getImage();
         Point pont = new Point(0, 0);
@@ -310,6 +335,7 @@ public class MenuPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnInfo;
+    private javax.swing.JButton btnLanguage;
     private javax.swing.JButton btnMinimize;
     private javax.swing.JButton btnMusic;
     private javax.swing.JButton btnResults;
@@ -323,5 +349,10 @@ public class MenuPanel extends javax.swing.JPanel {
 
     public void infoButtonEnable() {
         btnInfo.setEnabled(true);
+    }
+
+    public void languageSetting(ResourceBundle bundle) {
+        btnStart.setText(bundle.getString("btnStart.text"));
+        btnResults.setText(bundle.getString("btnResult.text"));
     }
 }

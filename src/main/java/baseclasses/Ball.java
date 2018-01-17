@@ -30,6 +30,8 @@ public class Ball extends Thread {
     private static int height;
     private static int panelWidth;
     private static int panelHeight;
+    private static int fieldSideX;
+    private static int fieldUpperY;
     private static int speedLimit;
 
     private boolean aktiv = true;
@@ -38,12 +40,12 @@ public class Ball extends Thread {
     /**
      * The contructor of the Ball object with one image.
      *
-     * @param img  the image of the ball
-     * @param x  x coordinate of the ball image
-     * @param y  y coordinate of the ball image
-     * @param dx  horizontal movement speed of the ball
-     * @param dy  vertical movement speed of the ball
-     * @param time  sleeping time of tha ball
+     * @param img the image of the ball
+     * @param x x coordinate of the ball image
+     * @param y y coordinate of the ball image
+     * @param dx horizontal movement speed of the ball
+     * @param dy vertical movement speed of the ball
+     * @param time sleeping time of tha ball
      * @param controller
      */
     public Ball(Image img, int x, int y, int dx, int dy, long time, Controller controller) {
@@ -59,12 +61,12 @@ public class Ball extends Thread {
     /**
      * The contructor of the Ball object with a pair of two images.
      *
-     * @param imagePair  the pair of the two images of the ball
-     * @param x  x coordinate of the ball image
-     * @param y  y coordinate of the ball image
-     * @param dx  horizontal movement speed of the ball
-     * @param dy  vertical movement speed of the ball
-     * @param time  sleeping time of tha ball
+     * @param imagePair the pair of the two images of the ball
+     * @param x x coordinate of the ball image
+     * @param y y coordinate of the ball image
+     * @param dx horizontal movement speed of the ball
+     * @param dy vertical movement speed of the ball
+     * @param time sleeping time of tha ball
      * @param controller
      */
     public Ball(BallImagePair imagePair, int x, int y, int dx, int dy, long time, Controller controller) {
@@ -109,26 +111,25 @@ public class Ball extends Thread {
     }
 
     /**
-     * This method is the balls movement description.
-     * When the ball hits the wall it changes its direction
+     * This method is the balls movement description. When the ball hits the
+     * wall it changes its direction
      */
     private void move() {
         x += dx;
         y += dy;
 
-        if (y <= height / 2) {
+        if (y <= height / 2 + fieldUpperY) {
             dy = -dy;
         }
 
-        if (x <= width / 2 || panelWidth - width / 2 <= x) {
+        if (x <= width / 2 + fieldSideX || panelWidth - width / 2 - fieldSideX <= x) {
             dx = -dx;
         }
     }
 
     /**
-     * This method changes the balls direction vertically if
-     * it collided with the paddle and if it is not in
-     * the falling state.
+     * This method changes the balls direction vertically if it collided with
+     * the paddle and if it is not in the falling state.
      */
     private void collide() {
         if (controller.collisionCheck(x, y) && falling == false) {
@@ -150,13 +151,13 @@ public class Ball extends Thread {
      */
     private void respawn() {
         if (panelHeight < y + height / 2) {
-            y = height / 2;
+            y = height / 2 + fieldUpperY;
             x = panelWidth / 4;
             falling = false;
             controller.mistakeOccurred();
         }
     }
-    
+
     /**
      * The thread's sleeping time
      */
@@ -194,6 +195,14 @@ public class Ball extends Thread {
 
     public void setAktiv(boolean aktiv) {
         this.aktiv = aktiv;
+    }
+
+    public static void setFieldSideX(int fieldSideX) {
+        Ball.fieldSideX = fieldSideX;
+    }
+
+    public static void setFieldUpperY(int fieldUpperY) {
+        Ball.fieldUpperY = fieldUpperY;
     }
 
     public Image getImg() {

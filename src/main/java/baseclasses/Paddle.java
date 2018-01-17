@@ -20,7 +20,7 @@ public class Paddle {
 
     private Image img;
     private int x;
-    
+
     private static int y;
     private static int width;
     private static int height;
@@ -39,11 +39,11 @@ public class Paddle {
     public void draw(Graphics g) {
         g.drawImage(img, x - width / 2, y - height / 2, width, height, null);
     }
-    
+
     public void imageChange() {
         img = imagePair.getRedImage();
     }
-
+    
     public static void setY(int y) {
         Paddle.y = y;
     }
@@ -83,4 +83,5 @@ public class Paddle {
     public static int getHeight() {
         return height;
     }
+
 }

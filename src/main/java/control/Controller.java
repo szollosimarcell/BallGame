@@ -18,6 +18,7 @@ import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +26,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import panels.ConsolePanel;
 import panels.GameOverPanel;
 import panels.GamePanel;
@@ -56,6 +58,7 @@ public class Controller implements Runnable {
     private Paddle paddle;
     private Music mainMusic;
     private Music guiEffect;
+    private ResourceBundle bundle;
 
     private long sec;
     private long speedingInterval;
@@ -63,6 +66,8 @@ public class Controller implements Runnable {
     private int secondWave;
     private int maxPlayerMixtaxes;
     private String musicPath;
+    private String bundleEleresHU;
+    private String bundleEleresEN;
     private int playerMistakes = 0;
     private long actTime = 0;
 
@@ -79,11 +84,14 @@ public class Controller implements Runnable {
 
     /**
      * This method inicializes the staring variables and the static variables
-     * with the static variables given in the Global package.
+     * with the static variables given in the Global package and sets the
+     * bundle.
      */
     public void staticSetting() {
         Ball.setWidth(Global.BALL_WIDTH);
         Ball.setHeight(Global.BALL_HEIGHT);
+        Ball.setFieldSideX(Global.FIELD_SIDE_STRIPE_X);
+        Ball.setFieldUpperY(Global.FIELD_UPPER_STRIPE_Y);
         Ball.setSpeedLimit(Global.BALL_SPEED_LIMIT);
 
         Paddle.setWidth(Global.PADDLE_WIDHT);
@@ -96,6 +104,10 @@ public class Controller implements Runnable {
         secondWave = Global.SECOND_WAVE;
         maxPlayerMixtaxes = Global.MAX_PLAYER_MISTAKES;
         musicPath = Global.MAIN_MUSIC_PATH;
+        bundleEleresHU = Global.BUNDLE_PATH_HU;
+        bundleEleresEN = Global.BUNDLE_PATH_EN;
+
+        bundleSetting("hu");
     }
 
     /**
@@ -120,6 +132,8 @@ public class Controller implements Runnable {
         gamePanel.setController(this);
         consolePanel.setController(this);
         gameOverPanel.setController(this);
+        consolePanel.languageSetting(bundle);
+        gameOverPanel.languageSetting(bundle);
         Ball.setPanelWidth(gamePanel.getWidth());
         Ball.setPanelHeight(gamePanel.getHeight());
         player = new Player(name);
@@ -148,8 +162,10 @@ public class Controller implements Runnable {
         Image ballImageBlue = new ImageIcon(this.getClass().getResource(Global.BALL_IMAGE_BLUE)).getImage();
         Image ballImageRed = new ImageIcon(this.getClass().getResource(Global.BALL_IMAGE_RED)).getImage();
         BallImagePair ballImagePair = new BallImagePair(ballImageBlue, ballImageRed);
-        int x = (int) (Math.random() * gamePanel.getWidth());
-        int y = Global.BALL_HEIGHT;
+        int maxX = Global.GAME_FRAME_WIDTH - Global.FIELD_SIDE_STRIPE_X;
+        int minX = Global.FIELD_SIDE_STRIPE_X;
+        int x = (int) (Math.random() * (maxX - minX) + minX);
+        int y = Global.BALL_HEIGHT / 2 + Global.FIELD_UPPER_STRIPE_Y;
         int dx = Global.BALL_DX;
         int dy = Global.BALL_DY;
         long time = Global.BALL_TIME;
@@ -203,7 +219,7 @@ public class Controller implements Runnable {
      *
      * @param x the x coordinate of the mouse
      */
-    public void movePaddle(int x) {
+    public void movePaddleMouse(int x) {
         if (Paddle.getWidth() / 2 <= x && x <= gamePanel.getWidth() - Paddle.getWidth() / 2) {
             paddle.setX(x);
         }
@@ -219,8 +235,9 @@ public class Controller implements Runnable {
     public boolean collisionCheck(int x, int y) {
         int beginX = paddle.getX() - Global.PADDLE_WIDHT / 2;
         int endX = paddle.getX() + Global.PADDLE_WIDHT / 2;
-        int paddleY = paddle.getY() - Global.PADDLE_HEIGHT / 2;
-        if (beginX <= x && x <= endX && paddleY <= y + Global.BALL_HEIGHT / 2) {
+        int paddleUpperY = paddle.getY() - Global.PADDLE_HEIGHT / 2;
+        int ballLowerY = y + Global.BALL_HEIGHT / 2;
+        if (beginX <= x && x <= endX && paddleUpperY <= ballLowerY && ballLowerY <= paddleUpperY + Global.BALL_SPEED_LIMIT) {
             if (playerMistakes < maxPlayerMixtaxes) {
                 ballCollisionEffect();
                 player.earnPoint();
@@ -242,9 +259,11 @@ public class Controller implements Runnable {
         if (ballList.get(0).getTime() == firstWave) {
             ballList.get(0).imageChange();
             createBlackBall();
+            paddle.imageChange();
         }
         if (ballList.get(0).getTime() == secondWave) {
             createBlackBall();
+            gamePanel.imageChange();
         }
     }
 
@@ -253,8 +272,10 @@ public class Controller implements Runnable {
      */
     private void createBlackBall() {
         Image image = new ImageIcon(this.getClass().getResource(Global.BALL_IMAGE_BLACK)).getImage();
-        int x = (int) (Math.random() * gamePanel.getWidth());
-        int y = Global.BALL_HEIGHT;
+        int maxX = Global.GAME_FRAME_WIDTH - Global.FIELD_SIDE_STRIPE_X;
+        int minX = Global.FIELD_SIDE_STRIPE_X;
+        int x = (int) (Math.random() * (maxX - minX) + minX);
+        int y = Global.BALL_HEIGHT / 2 + Global.FIELD_UPPER_STRIPE_Y;
         int dx = Global.BALL_DX;
         int dy = Global.BALL_DY;
         long time = Global.BALL_TIME;
@@ -270,7 +291,9 @@ public class Controller implements Runnable {
      * @return true - falling / false - not falling
      */
     public boolean ballFell(int y) {
-        if (paddle.getY() - Global.PADDLE_HEIGHT / 4 <= y + Global.BALL_HEIGHT / 2) {
+        int paddleUpperY = paddle.getY() - Global.PADDLE_HEIGHT / 2;
+        int ballLowerY = y + Global.BALL_HEIGHT / 2;
+        if (paddleUpperY + Global.BALL_DY < ballLowerY) {
             return true;
         } else {
             return false;
@@ -303,16 +326,6 @@ public class Controller implements Runnable {
         gamePanel.setVisible(false);
         gameOverPanel.setVisible(true);
         update();
-    }
-
-    /**
-     * Closes the game.
-     */
-    public void exitGame() {
-        int selectedOption = JOptionPane.showConfirmDialog(null, "Biztos ki akarsz lépni?", "Válassz", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (selectedOption == JOptionPane.YES_OPTION) {
-            System.exit(0);
-        }
     }
 
     /**
@@ -372,6 +385,7 @@ public class Controller implements Runnable {
     public void infoStart() {
         infoFrame = new InfoFrame(this);
         infoPanel.setController(this);
+        infoPanel.languageSetting(bundle);
         menuPanel.infoButtonDisable();
     }
 
@@ -422,6 +436,41 @@ public class Controller implements Runnable {
 
     public void musicOff() {
         mainMusic.leall();
+    }
+
+    /**
+     * This method inicializes the current language bundle
+     *
+     * @param language
+     */
+    public void bundleSetting(String language) {
+        if (language == "hu") {
+            bundle = ResourceBundle.getBundle(bundleEleresHU);
+        }
+        if (language == "en") {
+            bundle = ResourceBundle.getBundle(bundleEleresEN);
+        }
+        menuPanel.languageSetting(bundle);
+    }
+
+    /**
+     * This methot exits the game in the proper bundle.
+     */
+    public void exitDialog() {
+        UIManager.put("OptionPane.yesButtonText", bundle.getString("exitDialogYes"));
+        UIManager.put("OptionPane.noButtonText", bundle.getString("exitDialogNo"));
+        int valasz = JOptionPane.showConfirmDialog(null, bundle.getString("exitDialogString"), bundle.getString("exitDialogTitle"), 0);
+        if (valasz == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }
+
+    /**
+     * This method informs the user in the proper bundle for not giving a name
+     * at the starting of the game.
+     */
+    public void blankNameDialog() {
+        JOptionPane.showMessageDialog(null, bundle.getString("blankNameDialogString"), bundle.getString("blankNameDialogTitle"), 0);
     }
 
     public void setConsolePanel(ConsolePanel consolePanel) {

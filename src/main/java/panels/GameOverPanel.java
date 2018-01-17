@@ -12,6 +12,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.util.ResourceBundle;
 import javax.swing.ImageIcon;
 
 /**
@@ -59,9 +60,9 @@ public class GameOverPanel extends javax.swing.JPanel {
         btnNewGame = new javax.swing.JButton();
         btnBackToMenu = new javax.swing.JButton();
         btnExitGame = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblPointString = new javax.swing.JLabel();
         lblPoint = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblTimeString = new javax.swing.JLabel();
         lblTime = new javax.swing.JLabel();
 
         btnNewGame.setFont(new java.awt.Font("Eras Medium ITC", 1, 18)); // NOI18N
@@ -130,16 +131,16 @@ public class GameOverPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", 2, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel1.setText("Pontszám:");
+        lblPointString.setFont(new java.awt.Font("Microsoft YaHei UI", 2, 36)); // NOI18N
+        lblPointString.setForeground(new java.awt.Color(153, 153, 153));
+        lblPointString.setText("Pontszám:");
 
         lblPoint.setFont(new java.awt.Font("Microsoft YaHei UI", 2, 36)); // NOI18N
         lblPoint.setForeground(new java.awt.Color(153, 153, 153));
 
-        jLabel3.setFont(new java.awt.Font("Microsoft YaHei UI", 2, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel3.setText("Idő:");
+        lblTimeString.setFont(new java.awt.Font("Microsoft YaHei UI", 2, 36)); // NOI18N
+        lblTimeString.setForeground(new java.awt.Color(153, 153, 153));
+        lblTimeString.setText("Idő:");
 
         lblTime.setFont(new java.awt.Font("Microsoft YaHei UI", 2, 36)); // NOI18N
         lblTime.setForeground(new java.awt.Color(153, 153, 153));
@@ -149,32 +150,33 @@ public class GameOverPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(359, 359, 359)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnExitGame, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBackToMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNewGame, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(360, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblPoint, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(359, 359, 359)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnExitGame, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBackToMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnNewGame, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(lblPointString, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblPoint, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                .addComponent(lblTimeString, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblTime, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblPoint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblPointString, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                    .addComponent(lblTimeString, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnNewGame, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
@@ -239,7 +241,7 @@ public class GameOverPanel extends javax.swing.JPanel {
 
     private void btnExitGameMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitGameMouseReleased
         btnExitGame.setIcon(buttonImage);
-        controller.exitGame();
+        controller.exitDialog();
     }//GEN-LAST:event_btnExitGameMouseReleased
 
     private void setting() {
@@ -258,10 +260,10 @@ public class GameOverPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBackToMenu;
     private javax.swing.JButton btnExitGame;
     private javax.swing.JButton btnNewGame;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lblPoint;
+    private javax.swing.JLabel lblPointString;
     private javax.swing.JLabel lblTime;
+    private javax.swing.JLabel lblTimeString;
     // End of variables declaration//GEN-END:variables
 
     public void pointWrite(int points) {
@@ -270,5 +272,13 @@ public class GameOverPanel extends javax.swing.JPanel {
 
     public void timeWrite(long actTime) {
         lblTime.setText(actTime + "");
+    }
+
+    public void languageSetting(ResourceBundle bundle) {
+        lblPointString.setText(bundle.getString("lblPoint.text"));
+        lblTimeString.setText(bundle.getString("lblTime.text"));
+        btnNewGame.setText(bundle.getString("btnNewGame.text"));
+        btnBackToMenu.setText(bundle.getString("btnBackToMenu.text"));
+        btnExitGame.setText(bundle.getString("btnExitGame.text"));
     }
 }
